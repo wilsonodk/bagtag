@@ -11,10 +11,6 @@
             </div>
 
             <div>
-                <p><a href="{{ path('stores') }}">Stores</a> / {{ store.name }}</p>
-            </div>
-
-            <div>
                 <h2>Contact</h2>
                 {% if store.address %}
                     <p>{{ store.address }}</p>
@@ -42,6 +38,8 @@
                 {% if store.youtube %}
                     <p><a href="{{ store.youtube }}">{{ store.youtube }}</a></p>
                 {% endif %}
+
+                <p><a href="{{ path('edit_store_by_id', {'id': store.id}) }}">Update Store</a></p>
             </div>
         </div>
     </div>

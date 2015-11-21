@@ -1,13 +1,13 @@
 {# src/AppBundle/Resources/views/Store/store_add.html.twig #}
 {% extends "::base.html.twig" %}
 
-{% block title %}Add Store{% endblock %}
+{% block title %}{{ action }} Store{% endblock %}
 
 {% block body %}
     <div id="wrapper">
         <div id="container">
             <div id="welcome">
-                <h1>Add Store</h1>
+                <h1>{{ action }} Store</h1>
             </div>
 
             {{ form_start(form) }}

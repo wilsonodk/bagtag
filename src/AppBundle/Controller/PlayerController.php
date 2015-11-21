@@ -70,4 +70,57 @@ class PlayerController extends Controller
                 'player' => $player,
             );
     }
+
+    /**
+     * @Route("/player/{id}/edit", name="edit_player_by_id")
+     * @Template("AppBundle:Player:player_add.html.twig")
+     * @Method("GET")
+     */
+    public function editAction($id)
+    {
+        $player = $this->getDoctrine()->getRepository('AppBundle:Player')->find($id);
+
+        if (!$player) {
+            throw $this->createNotFoundException('No player found for id ' . $id);
+        }
+
+        $form = $this->createForm(new PlayerType(), $player);
+
+        return array(
+                'form' => $form->createView(),
+                'action' => 'Update',
+            );
+    }
+
+    /**
+     * @Route("/player/{id}/edit", name="update_player_by_id")
+     * @Method("POST")
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $player = $em->getRepository('AppBundle:Player')->find($id);
+
+        if (!$player) {
+            throw $this->createNotFoundException('No player found for id ' . $id);
+        }
+
+        $form = $this->createForm(new PlayerType(), $player);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em->persist($player);
+            $em->flush();
+
+            $this->addFlash('notice', 'Player updated!');
+
+            return $this->redirectToRoute('player_by_id', array('id' => $id));
+        }
+
+        return array(
+                'form' => $form->createView(),
+                'action' => 'Update',
+            );
+
+    }
 }

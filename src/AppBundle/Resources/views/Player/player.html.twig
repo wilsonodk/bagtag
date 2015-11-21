@@ -16,6 +16,8 @@
                         <li><a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a></li>
                     {% endfor %}
                 </ul>
+
+                <p><a href="{{ path('edit_player_by_id', {'id': player.id}) }}">Edit Player</a></p>
             </div>
         </div>
     </div>

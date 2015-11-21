@@ -50,6 +50,7 @@ class StoreController extends Controller
 
         return array(
                 'form' => $form->createView(),
+                'action' => 'Add',
             );
     }
 
@@ -69,6 +70,59 @@ class StoreController extends Controller
         return array(
                 'store' => $store,
             );
+    }
+
+    /**
+     * @Route("/store/{id}/edit", name="edit_store_by_id")
+     * @Template("AppBundle:Store:store_add.html.twig")
+     * @Method("GET")
+     */
+    public function editAction($id)
+    {
+        $store = $this->getDoctrine()->getRepository('AppBundle:Store')->find($id);
+
+        if (!$store) {
+            throw $this->createNotFoundException('No store found for id ' . $id);
+        }
+
+        $form = $this->createForm(new StoreType(), $store);
+
+        return array(
+                'form' => $form->createView(),
+                'action' => 'Update',
+            );
+    }
+
+    /**
+     * @Route("/store/{id}/edit", name="update_store_by_id")
+     * @Method("POST")
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $store = $em->getRepository('AppBundle:Store')->find($id);
+
+        if (!$store) {
+            throw $this->createNotFoundException('No store found for id ' . $id);
+        }
+
+        $form = $this->createForm(new StoreType(), $store);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em->persist($store);
+            $em->flush();
+
+            $this->addFlash('notice', 'Store updated!');
+
+            return $this->redirectToRoute('store_by_id', array('id' => $id));
+        }
+
+        return array(
+                'form' => $form->createView(),
+                'action' => 'Update',
+            );
+
     }
 
 }

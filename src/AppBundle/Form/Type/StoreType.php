@@ -10,8 +10,6 @@ class StoreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Get stores
-
         $builder
             ->add('name', 'text', array('required' => true))
             ->add('address', 'textarea', array('required' => false))
@@ -26,8 +24,7 @@ class StoreType extends AbstractType
             ->add('youtube', 'text', array('required' => false))
             ->add('twitch', 'text', array('required' => false))
             ->add('save', 'submit')
-        ;
-
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

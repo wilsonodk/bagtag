@@ -10,8 +10,6 @@ class TournamentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Get stores
-
         $builder
             ->add('name', 'text', array('required' => true))
             ->add('players', 'entity', array(
@@ -27,8 +25,7 @@ class TournamentType extends AbstractType
                 'years' => range(2015,2016),
             ))
             ->add('save', 'submit')
-        ;
-
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

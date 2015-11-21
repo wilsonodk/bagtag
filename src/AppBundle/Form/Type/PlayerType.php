@@ -10,8 +10,6 @@ class PlayerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Get stores
-
         $builder
             ->add('name', 'text', array('required' => true))
             ->add('rank', 'integer', array('required' => true))
@@ -23,8 +21,7 @@ class PlayerType extends AbstractType
                 'multiple' => true,
             ))
             ->add('save', 'submit')
-        ;
-
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

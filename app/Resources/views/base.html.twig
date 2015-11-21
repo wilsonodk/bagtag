@@ -35,6 +35,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <ul>
+            <li><a href="{{ path('homepage') }}">Home</a></li>
+            <li><a href="{{ path('stores') }}">Stores</a></li>
+            <li><a href="{{ path('players') }}">Players</a></li>
+            <li><a href="{{ path('tournaments') }}">Tournaments</a></li>
+        </ul>
+
         {% for flash_message in app.session.flashbag.get('error') %}
             <div class="flash-error">
                 {{ flash_message }}

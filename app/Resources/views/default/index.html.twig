@@ -1,0 +1,32 @@
+{# src/AppBundle/Resources/views/default/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>ATL HWK Bag Tags</h1>
+            </div>
+
+            <table>
+                <tr><th>Rank</th><th>Player</th><th>Stores the Player Frequents</th></tr>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.rank }}</td>
+                        <td><a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a></td>
+                        <td>
+                            {% for store in player.stores %}
+                                <a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan=2>No players found, <a href="{{ path('add_player') }}">add one</a>.</td></tr>
+                {% endfor %}
+            </table>
+
+            <p>Create a <a href="{{ path('add_tournament') }}">tournament</a>.</p>
+
+        </div>
+    </div>
+{% endblock %}

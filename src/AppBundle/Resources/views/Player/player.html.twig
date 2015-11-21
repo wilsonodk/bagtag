@@ -1,0 +1,22 @@
+{# src/AppBundle/Resources/views/Player/player.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}Player{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>{{ player.name}}</h1>
+                <p>Rank: {{ player.rank }}</p>
+
+                <h2>Stores</h2>
+                <ul>
+                    {% for store in player.stores %}
+                        <li><a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

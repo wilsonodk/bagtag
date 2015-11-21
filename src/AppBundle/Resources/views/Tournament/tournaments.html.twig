@@ -1,0 +1,22 @@
+{# src/AppBundle/Resources/views/Tournament/tournaments.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}All Tournaments{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>Tournaments</h1>
+            </div>
+
+            <ul>
+                {% for tournament in tournaments %}
+                    <li><a href="{{ path('tournament_by_id', {'id': tournament.id}) }}">{{ tournament.name }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <p>Don't see your tournament? <a href="{{ path('add_tournament') }}">Add a tournament</a>.</p>
+        </div>
+    </div>
+{% endblock %}

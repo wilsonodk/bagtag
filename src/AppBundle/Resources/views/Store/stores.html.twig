@@ -1,0 +1,22 @@
+{# src/AppBundle/Resources/views/Store/stores.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}All Stores{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>Stores</h1>
+            </div>
+
+            <ul>
+                {% for store in stores %}
+                    <li><a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <p>Don't see your store? <a href="{{ path('add_store') }}">Add a store</a>.</p>
+        </div>
+    </div>
+{% endblock %}

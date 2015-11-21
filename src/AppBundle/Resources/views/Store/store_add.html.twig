@@ -1,0 +1,20 @@
+{# src/AppBundle/Resources/views/Store/store_add.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}Add Store{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>Add Store</h1>
+            </div>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+            <p>See <a href="{{ path('stores') }}">all stores</a>.</p>
+        </div>
+    </div>
+{% endblock %}

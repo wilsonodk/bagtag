@@ -1,0 +1,48 @@
+{# src/AppBundle/Resources/views/Store/store.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ store.name }}{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>{{ store.name }}</h1>
+            </div>
+
+            <div>
+                <p><a href="{{ path('stores') }}">Stores</a> / {{ store.name }}</p>
+            </div>
+
+            <div>
+                <h2>Contact</h2>
+                {% if store.address %}
+                    <p>{{ store.address }}</p>
+                    <p>{{ store.city }}, {{ store.state }} {{ store.zip }}</p>
+                {% endif %}
+                {% if store.phone %}
+                    <p>Phone: {{ store.phone }}</p>
+                {% endif %}
+                {% if store.email %}
+                    <p>Email: {{ store.email }}</p>
+                {% endif %}
+                {% if store.website %}
+                    <p><a href="{{ store.website }}">{{ store.website }}</a></p>
+                {% endif %}
+                <h3>Social</h3>
+                {% if store.facebook %}
+                    <p><a href="{{ store.facebook }}">{{ store.facebook }}</a></p>
+                {% endif %}
+                {% if store.twitter %}
+                    <p><a href="{{ store.twitter }}">{{ store.twitter }}</a></p>
+                {% endif %}
+                {% if store.twitch %}
+                    <p><a href="{{ store.twitch }}">{{ store.twitch }}</a></p>
+                {% endif %}
+                {% if store.youtube %}
+                    <p><a href="{{ store.youtube }}">{{ store.youtube }}</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

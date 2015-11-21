@@ -1,0 +1,19 @@
+{# src/AppBundle/Resources/views/Player/player.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}Add Player{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>Add Player</h1>
+            </div>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

@@ -47,7 +47,7 @@ class TournamentController extends Controller
 
             $this->addFlash('notice', 'New tournament added!');
 
-            return $this->redirectToRoute('tournament_by_id', array('id', $tournament->getId()));
+            return $this->redirectToRoute('tournament_by_id', array('id' => $tournament->getId()));
         }
 
         return array(

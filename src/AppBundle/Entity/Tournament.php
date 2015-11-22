@@ -14,21 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tournament
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var guid
      *
-     * @ORM\Column(name="key", type="guid")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
      */
-    private $key;
+    private $id;
 
     /**
      * @var string
@@ -68,7 +60,7 @@ class Tournament
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="hosted", type="date", nullable=false)
+     * @ORM\Column(name="hosted", type="datetime", nullable=false)
      * @Assert\DateTime()
      */
     private $hosted;
@@ -239,29 +231,5 @@ class Tournament
     public function getHosted()
     {
         return $this->hosted;
-    }
-
-    /**
-     * Set key
-     *
-     * @param guid $key
-     *
-     * @return Tournament
-     */
-    public function setKey($key)
-    {
-        $this->key = $key;
-
-        return $this;
-    }
-
-    /**
-     * Get key
-     *
-     * @return guid
-     */
-    public function getKey()
-    {
-        return $this->key;
     }
 }

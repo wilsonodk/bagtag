@@ -8,6 +8,16 @@
         <div id="container">
             <div id="welcome">
                 <h1>Tournament</h1>
+
+                <h2>Hosted Date</h2>
+                <p>{{ tournament.hosted|date("l, F j, Y") }}</p>
+
+                <h2>Participants</h2>
+                <ul>
+                    {% for player in tournament.players %}
+                        <li><a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

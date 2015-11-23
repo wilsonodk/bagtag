@@ -4,17 +4,12 @@
 {% block title %}{{ action }} Store{% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>{{ action }} Store</h1>
-            </div>
+    <div class="container">
+        <h2>{{ action }} Store</h2>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
 
-            <p>See <a href="{{ path('stores') }}">all stores</a>.</p>
-        </div>
     </div>
 {% endblock %}

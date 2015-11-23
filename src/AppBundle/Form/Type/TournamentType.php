@@ -2,6 +2,7 @@
 // src/AppBundle/Form/Type/TournamentType.php
 namespace AppBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +14,11 @@ class TournamentType extends AbstractType
         $builder
             ->add('name', 'text', array('required' => true))
             ->add('players', 'entity', array(
-                'placeholder' => 'Pick players involved',
                 'class' => 'AppBundle:Player',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                },
                 'expanded' => true,
                 'multiple' => true,
             ))

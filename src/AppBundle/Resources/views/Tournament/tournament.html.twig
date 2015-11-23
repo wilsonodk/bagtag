@@ -3,22 +3,56 @@
 
 {% block title %}Tournament{% endblock %}
 
+{% block stylesheets %}
+    {% stylesheets '@AppBundle/Resources/public/css/jquery-ui.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>Tournament</h1>
+    <div class="container">
+        <h2>{{ tournament.name }}</h2>
 
-                <h2>Hosted Date</h2>
-                <p>{{ tournament.hosted|date("l, F j, Y") }}</p>
+        <p>Tournament hosted on {{ tournament.hosted|date("l, F j, Y") }}.</p>
 
-                <h2>Participants</h2>
-                <ul>
-                    {% for player in tournament.players %}
-                        <li><a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a></li>
-                    {% endfor %}
-                </ul>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Participants</h3>
             </div>
+
+            <ul class="list-group" id="participants">
+                {% for player in tournament.players %}
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        <span class="badge">{{ player.rank }}</span>
+                        <a href="{{ path('player_by_id', {'id': player.id}) }}">
+                            {{ player.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+
+        <p>Arrange the players in the order of best placed first, and worse place last. Then complete tournament.</p>
+
+        <p><button class="btn btn-primary" id="complete-tournament">Complete Tournament</button></p>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@AppBundle/Resources/public/js/jquery-ui.min.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+    function completeTournament() {
+        alert('complete-tournament');
+    }
+
+    $(function() {
+        $( '#participants' ).sortable();
+
+        $( '#complete-tournament' ).click(completeTournament);
+    });
+    </script>
 {% endblock %}

@@ -4,19 +4,18 @@
 {% block title %}All Stores{% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>Stores</h1>
-            </div>
+    <div class="container">
+        <h2>Stores</h2>
 
-            <ul>
-                {% for store in stores %}
-                    <li><a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a></li>
-                {% endfor %}
-            </ul>
-
-            <p>Don't see your store? <a href="{{ path('add_store') }}">Add a store</a>.</p>
+        <div class="list-group">
+            {% for store in stores %}
+                <a class="list-group-item" href="{{ path('store_by_id', {'id': store.id}) }}">
+                    {{ store.name }}
+                    <span class="label label-info">{{ store.city }}, {{ store.state }}</span>
+                </a>
+            {% endfor %}
         </div>
+
+        <p>Don't see your store? <a class="btn btn-default btn-sm" href="{{ path('add_store') }}">Add Store</a></p>
     </div>
 {% endblock %}

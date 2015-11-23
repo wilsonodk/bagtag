@@ -2,19 +2,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>ATL HWK Bag Tags</h1>
-            </div>
+    <div class="jumbotron">
+        <div class="container">
+            <p>The best thing about bag tags is having challenges to get a better number.
+                Challenges can be between two players or a tournament with multiple participants.
+                Regardless, we call them <a href="{{ path('tournaments') }}">Tournaments</a>, but don't let the name fool you,
+                tournaments are for casual one-off dogfights at the kitchen table, as well as for competative play such as Store Championships.</p>
+            <p><a class="btn btn-primary" href="{{ path('add_tournament') }}" role="button">Create Tournament</a></p>
+        </div>
+    </div>
 
-            <table>
+    <div class="container">
+        <table class="table">
+            <thead>
                 <tr><th>Rank</th><th>Player</th><th>Stores the Player Frequents</th></tr>
+            </thead>
+            <tbody>
                 {% for player in players %}
                     <tr>
                         <td>{{ player.rank }}</td>
                         <td><a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a></td>
-                        <td>
+                        <td style="font-size: smaller;">
                             {% for store in player.stores %}
                                 <a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a>{% if not loop.last %}, {% endif %}
                             {% endfor %}
@@ -23,10 +31,10 @@
                 {% else %}
                     <tr><td colspan=2>No players found, <a href="{{ path('add_player') }}">add one</a>.</td></tr>
                 {% endfor %}
-            </table>
+            </tbody>
+        </table>
 
-            <p>Create a <a href="{{ path('add_tournament') }}">tournament</a>.</p>
+        <p><a class="btn btn-default btn-sm" href="{{ path('add_tournament') }}">Create Tournament</a></p>
 
-        </div>
     </div>
 {% endblock %}

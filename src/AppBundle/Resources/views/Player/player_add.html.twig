@@ -4,16 +4,12 @@
 {% block title %}{{ action }} Player{% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>{{ action }} Player</h1>
-            </div>
+    <div class="container">
+        <h2>{{ action }} Player</h2>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
 
-        </div>
     </div>
 {% endblock %}

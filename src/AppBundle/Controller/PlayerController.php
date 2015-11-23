@@ -49,6 +49,7 @@ class PlayerController extends Controller
         }
 
         return array(
+                'action' => 'Create',
                 'form' => $form->createView(),
             );
     }

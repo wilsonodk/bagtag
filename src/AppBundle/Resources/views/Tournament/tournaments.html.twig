@@ -4,19 +4,20 @@
 {% block title %}All Tournaments{% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>Tournaments</h1>
-            </div>
+    <div class="container">
 
-            <ul>
-                {% for tournament in tournaments %}
-                    <li><a href="{{ path('tournament_by_id', {'id': tournament.id}) }}">{{ tournament.name }}</a></li>
-                {% endfor %}
-            </ul>
+        <h2>Tournaments</h2>
 
-            <p>Don't see your tournament? <a href="{{ path('add_tournament') }}">Add a tournament</a>.</p>
+        <div class="list-group">
+            {% for tournament in tournaments %}
+                <a class="list-group-item" href="{{ path('tournament_by_id', {'id': tournament.id}) }}">
+                    <span class="badge">Participants: {{ tournament.players|length }}</span>
+                    {{ tournament.name }}
+                    <span class="label label-default">{{ tournament.hosted|date('m/d/y') }}</span>
+                </a>
+            {% endfor %}
         </div>
+
+        <p><a class="btn btn-primary" href="{{ path('add_tournament') }}">Create a tournament</a></p>
     </div>
 {% endblock %}

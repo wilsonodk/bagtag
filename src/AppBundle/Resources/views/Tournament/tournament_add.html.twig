@@ -1,19 +1,33 @@
 {# src/AppBundle/Resources/views/Tournament/tournament.html.twig #}
 {% extends "::base.html.twig" %}
 
-{% block title %}Add Tournament{% endblock %}
+{% form_theme form _self %}
+
+{% block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        <div class="row">
+            {%- for child in form %}
+                <div class="col-md-2">
+                    {{- form_widget(child, {
+                        parent_label_class: label_attr.class|default(''),
+                        translation_domain: choice_translation_domain,
+                    }) -}}
+                </div>
+            {% endfor -%}
+        </div>
+    </div>
+{%- endblock choice_widget_expanded %}
+
+{% block title %}{{ action }} Tournament{% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>Add Tournament</h1>
-            </div>
+    <div class="container">
+        <h2>{{ action }} Tournament</h2>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
 
-        </div>
     </div>
 {% endblock %}

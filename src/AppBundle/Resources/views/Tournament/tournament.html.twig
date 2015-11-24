@@ -15,7 +15,6 @@
 
         <p>Tournament hosted on {{ tournament.hosted|date("l, F j, Y") }}.</p>
 
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Participants</h3>
@@ -25,10 +24,8 @@
                 {% for player in tournament.players %}
                     <li class="list-group-item">
                         <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                        <span class="badge">{{ player.rank }}</span>
-                        <a href="{{ path('player_by_id', {'id': player.id}) }}">
-                            {{ player.name }}
-                        </a>
+                        <span class="badge player-rank">{{ player.rank }}</span>
+                        <a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -45,8 +42,32 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
+    var completeUrl = "{{ path('complete_tournament', {'id': tournament.id }) }}",
+        successUrl = "{{ path('tournaments') }}",
+        players = [];
+
     function completeTournament() {
-        alert('complete-tournament');
+        $(this).attr('disabled', true);
+
+        $( 'ul#participants li' ).each(function (i) {
+            var self = $(this),
+                temp = {
+                    name: self.find('a').text(),
+                    rank: self.find('.player-rank').text()
+                };
+
+            players.push(temp);
+        });
+
+        $.ajax({
+            url: completeUrl,
+            method: 'POST',
+            data: {players: players},
+            success: function (data) {
+                console.log(data);
+                window.location.replace(successUrl);
+            }
+        });
     }
 
     $(function() {

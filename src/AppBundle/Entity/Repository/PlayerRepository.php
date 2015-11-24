@@ -28,4 +28,13 @@ class PlayerRepository extends EntityRepository
     {
         return $this->findBy(array(), array('rank' => 'ASC'));
     }
+
+    /**
+     * findByName
+     *
+     * @return Player
+     */
+    public function findByName($name) {
+        return $this->findBy(array('name' => $name));
+    }
 }

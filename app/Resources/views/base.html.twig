@@ -23,23 +23,16 @@
 
     <div class="container">
         {% for flash_message in app.session.flashbag.get('error') %}
-            <div class="alert alert-danger" role="alert">
-                {{ flash_message }}
-            </div>
+            <div class="alert alert-danger" role="alert">{{ flash_message }}</div>
         {% endfor %}
         {% for flash_message in app.session.flashbag.get('warning') %}
-            <div class="alert alert-warning" role="alert">
-                {{ flash_message }}
-            </div>
+            <div class="alert alert-warning" role="alert">{{ flash_message }}</div>
         {% endfor %}
         {% for flash_message in app.session.flashbag.get('notice') %}
-            <div class="alert alert-success" role="alert">
-                {{ flash_message }}
-            </div>
+            <div class="alert alert-success" role="alert">{{ flash_message }}</div>
         {% endfor %}
     </div>
 
-    <div>&nbsp;</div>
     {% block body %}{% endblock %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

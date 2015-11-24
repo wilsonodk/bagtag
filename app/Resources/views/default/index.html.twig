@@ -2,17 +2,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="jumbotron">
-        <div class="container">
+    <div class="container">
+        <div class="jumbotron">
             <p>The best thing about bag tags is having challenges to get a better number.
-                Challenges can be between two players or a tournament with multiple participants.
+                Challenges can be between two players or with multiple participants.
                 Regardless, we call them <a href="{{ path('tournaments') }}">Tournaments</a>, but don't let the name fool you,
                 tournaments are for casual one-off dogfights at the kitchen table, as well as for competative play such as Store Championships.</p>
             <p><a class="btn btn-primary" href="{{ path('add_tournament') }}" role="button">Create Tournament</a></p>
         </div>
-    </div>
 
-    <div class="container">
         <table class="table">
             <thead>
                 <tr><th>Rank</th><th>Player</th><th>Stores the Player Frequents</th></tr>
@@ -22,7 +20,7 @@
                     <tr>
                         <td>{{ player.rank }}</td>
                         <td><a href="{{ path('player_by_id', {'id': player.id}) }}">{{ player.name }}</a></td>
-                        <td style="font-size: smaller;">
+                        <td>
                             {% for store in player.stores %}
                                 <a href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a>{% if not loop.last %}, {% endif %}
                             {% endfor %}
@@ -35,6 +33,5 @@
         </table>
 
         <p><a class="btn btn-default btn-sm" href="{{ path('add_tournament') }}">Create Tournament</a></p>
-
     </div>
 {% endblock %}

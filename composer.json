@@ -23,6 +23,7 @@
         "doctrine/dbal": "~2.4."
     },
     "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
     },
     "scripts": {
         "pre-install-cmd": [

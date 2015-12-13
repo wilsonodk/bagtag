@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "65b03096a2eb4c9c699ea0d906ed83fd",
+    "hash": "b010ad0b8332be75f6bcd06a06b891cf",
     "content-hash": "fe3f40bb7ad1b8f3f564aeb194b3a17a",
     "packages": [
         {
@@ -1700,16 +1700,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v85",
+            "version": "v87",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "ab6bb4443ef51a29101702bb1d1f85a7fe25f214"
+                "reference": "af49086b7f051af17c2a079150188b77bca7d595"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/ab6bb4443ef51a29101702bb1d1f85a7fe25f214",
-                "reference": "ab6bb4443ef51a29101702bb1d1f85a7fe25f214",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/af49086b7f051af17c2a079150188b77bca7d595",
+                "reference": "af49086b7f051af17c2a079150188b77bca7d595",
                 "shasum": ""
             },
             "bin": [
@@ -1740,7 +1740,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-12-09 15:27:54"
+            "time": "2015-12-11 20:12:26"
         }
     ],
     "aliases": [],

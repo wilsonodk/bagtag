@@ -14,11 +14,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tournament
 {
     /**
-     * @var guid
+     * @var integer
      *
-     * @ORM\Column(type="guid")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 

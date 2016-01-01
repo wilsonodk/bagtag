@@ -13,11 +13,13 @@
             </div>
             <div class="list-group">
                 {% if store.address %}
-                    <p class="list-group-item">
+                    {% set full_address %}{{ store.address }} {{ store.city }}, {{ store.state }} {{ store.zip }}{% endset %}
+
+                    <a href="http://maps.google.com/?q={{ full_address|url_encode }}" target="_new" title="See in Google Maps" class="list-group-item">
                         <span class="badge"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span>
                         {{ store.address }}<br/>
                         {{ store.city }}, {{ store.state }} {{ store.zip }}
-                    </p>
+                    </a>
                 {% endif %}
                 {% if store.phone %}
                     <p class="list-group-item">

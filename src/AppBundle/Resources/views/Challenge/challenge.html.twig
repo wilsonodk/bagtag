@@ -1,7 +1,7 @@
-{# src/AppBundle/Resources/views/Tournament/tournament.html.twig #}
+{# src/AppBundle/Resources/views/Challenge/challenge.html.twig #}
 {% extends "::base.html.twig" %}
 
-{% block title %}Tournament{% endblock %}
+{% block title %}Challenge{% endblock %}
 
 {% block stylesheets %}
     {% stylesheets '@AppBundle/Resources/public/css/jquery-ui.min.css' %}
@@ -11,9 +11,9 @@
 
 {% block body %}
     <div class="container">
-        <h2>{{ tournament.name }}</h2>
+        <h2>{{ challenge.name }}</h2>
 
-        <p>Tournament hosted on {{ tournament.hosted|date("l, F j, Y") }}.</p>
+        <p>Challenge hosted on {{ challenge.hosted|date("l, F j, Y") }}.</p>
 
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -21,7 +21,7 @@
             </div>
 
             <ul class="list-group" id="participants">
-                {% for player in tournament.players %}
+                {% for player in challenge.players %}
                     <li class="list-group-item">
                         <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
                         <span class="badge player-rank">{{ player.rank }}</span>
@@ -31,9 +31,9 @@
             </ul>
         </div>
 
-        <p>Arrange the players in the order of best placed first, and worse place last. Then complete tournament.</p>
+        <p>Arrange the players in the order of best placed first, and worse place last. Then complete challenge.</p>
 
-        <p><button class="btn btn-primary" id="complete-tournament">Complete Tournament</button></p>
+        <p><button class="btn btn-primary" id="complete-challenge">Complete Challenge</button></p>
     </div>
 {% endblock %}
 
@@ -42,11 +42,11 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
-    var completeUrl = "{{ path('complete_tournament', {'id': tournament.id }) }}",
-        successUrl = "{{ path('tournaments') }}",
+    var completeUrl = "{{ path('complete_challenge', {'id': challenge.id }) }}",
+        successUrl = "{{ path('challenges') }}",
         players = [];
 
-    function completeTournament() {
+    function completeChallenge() {
         $(this).attr('disabled', true);
 
         $( 'ul#participants li' ).each(function (i) {
@@ -73,7 +73,7 @@
     $(function() {
         $( '#participants' ).sortable();
 
-        $( '#complete-tournament' ).click(completeTournament);
+        $( '#complete-challenge' ).click(completeChallenge);
     });
     </script>
 {% endblock %}

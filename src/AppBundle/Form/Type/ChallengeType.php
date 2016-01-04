@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Form/Type/TournamentType.php
+// src/AppBundle/Form/Type/ChallengeType.php
 namespace AppBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TournamentType extends AbstractType
+class ChallengeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,7 +26,7 @@ class TournamentType extends AbstractType
                 'widget' => 'single_text',
                 'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
                 'required' => false,
-                'years' => range(2015,2016),
+                'years' => range(2015, 2016),
             ))
             ->add('save', 'submit')
             ;
@@ -35,12 +35,12 @@ class TournamentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Tournament',
+            'data_class' => 'AppBundle\Entity\Challenge',
         ));
     }
 
     public function getName()
     {
-        return 'tournament';
+        return 'challenge';
     }
 }

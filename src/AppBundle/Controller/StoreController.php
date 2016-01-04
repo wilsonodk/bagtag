@@ -14,7 +14,7 @@ class StoreController extends Controller
 {
     /**
      * @Route("/stores", name="stores")
-     * @Template("AppBundle:Store:stores.html.twig")
+     * @Template("AppBundle:Store:list.html.twig")
      * @Method("GET")
      */
     public function listAction()
@@ -28,7 +28,7 @@ class StoreController extends Controller
 
     /**
      * @Route("/stores/add", name="add_store")
-     * @Template("AppBundle:Store:store_add.html.twig")
+     * @Template("AppBundle:Store:add.html.twig")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request)
@@ -56,7 +56,7 @@ class StoreController extends Controller
 
     /**
      * @Route("/store/{id}", name="store_by_id")
-     * @Template("AppBundle:Store:store.html.twig")
+     * @Template("AppBundle:Store:index.html.twig")
      * @Method("GET")
      */
     public function infoAction($id)
@@ -74,7 +74,7 @@ class StoreController extends Controller
 
     /**
      * @Route("/store/{id}/edit", name="edit_store_by_id")
-     * @Template("AppBundle:Store:store_add.html.twig")
+     * @Template("AppBundle:Store:add.html.twig")
      * @Method("GET")
      */
     public function editAction($id)
@@ -124,5 +124,4 @@ class StoreController extends Controller
             );
 
     }
-
 }

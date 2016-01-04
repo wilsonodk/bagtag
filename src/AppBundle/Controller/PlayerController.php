@@ -14,7 +14,7 @@ class PlayerController extends Controller
 {
     /**
      * @Route("/players", name="players")
-     * @Template("AppBundle:Player:players.html.twig")
+     * @Template("AppBundle:Player:list.html.twig")
      * @Method("GET")
      */
     public function listAction()
@@ -28,7 +28,7 @@ class PlayerController extends Controller
 
     /**
      * @Route("/players/add", name="add_player")
-     * @Template("AppBundle:Player:player_add.html.twig")
+     * @Template("AppBundle:Player:add.html.twig")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request)
@@ -56,7 +56,7 @@ class PlayerController extends Controller
 
     /**
      * @Route("/player/{id}", name="player_by_id")
-     * @Template("AppBundle:Player:player.html.twig")
+     * @Template("AppBundle:Player:index.html.twig")
      * @Method("GET")
      */
     public function infoAction($id)
@@ -74,7 +74,7 @@ class PlayerController extends Controller
 
     /**
      * @Route("/player/{id}/edit", name="edit_player_by_id")
-     * @Template("AppBundle:Player:player_add.html.twig")
+     * @Template("AppBundle:Player:add.html.twig")
      * @Method("GET")
      */
     public function editAction($id)

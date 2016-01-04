@@ -16,7 +16,7 @@ class ChallengeController extends Controller
 {
     /**
      * @Route("/challenges", name="challenges")
-     * @Template("AppBundle:Challenge:challenges.html.twig")
+     * @Template("AppBundle:Challenge:list.html.twig")
      * @Method("GET")
      */
     public function listAction()
@@ -32,7 +32,7 @@ class ChallengeController extends Controller
 
     /**
      * @Route("/challenges/add", name="add_challenge")
-     * @Template("AppBundle:Challenge:challenge_add.html.twig")
+     * @Template("AppBundle:Challenge:add.html.twig")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request)
@@ -60,7 +60,7 @@ class ChallengeController extends Controller
 
     /**
      * @Route("/challenge/{id}", name="challenge_by_id")
-     * @Template("AppBundle:Challenge:challenge.html.twig")
+     * @Template("AppBundle:Challenge:index.html.twig")
      * @Method("GET")
      */
     public function infoAction($id)

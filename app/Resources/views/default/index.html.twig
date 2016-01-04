@@ -6,9 +6,8 @@
         <div class="jumbotron">
             <p>The best thing about bag tags is having challenges to get a better number.
                 Challenges can be between two players or with multiple participants.
-                Regardless, we call them <a href="{{ path('tournaments') }}">Tournaments</a>, but don't let the name fool you,
-                tournaments are for casual one-off dogfights at the kitchen table, as well as for competative play such as Store Championships.</p>
-            <p><a class="btn btn-primary" href="{{ path('add_tournament') }}" role="button">Create Tournament</a></p>
+                Challenges are for casual one-off dogfights at the kitchen table, as well as for competative play such as Store Championships.</p>
+            <p><a class="btn btn-primary" href="{{ path('add_challenge') }}" role="button">Create Challenge</a></p>
         </div>
 
         <table class="table">
@@ -32,6 +31,6 @@
             </tbody>
         </table>
 
-        <p><a class="btn btn-default btn-sm" href="{{ path('add_tournament') }}">Create Tournament</a></p>
+        <p><a class="btn btn-default btn-sm" href="{{ path('add_challenge') }}">Create Challenge</a></p>
     </div>
 {% endblock %}

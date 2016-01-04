@@ -1,0 +1,23 @@
+{# src/AppBundle/Resources/views/Challenge/challenges.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block title %}All Challenges{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h2>Challenges</h2>
+
+        <div class="list-group">
+            {% for challenge in challenges %}
+                <a class="list-group-item" href="{{ path('challenge_by_id', {'id': challenge.id}) }}">
+                    <span class="badge">Participants: {{ challenge.players|length }}</span>
+                    {{ challenge.name }}
+                    <span class="label label-default">{{ challenge.hosted|date('m/d/y') }}</span>
+                </a>
+            {% endfor %}
+        </div>
+
+        <p><a class="btn btn-primary" href="{{ path('add_challenge') }}">Create a challenge</a></p>
+    </div>
+{% endblock %}

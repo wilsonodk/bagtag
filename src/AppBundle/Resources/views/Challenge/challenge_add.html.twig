@@ -1,4 +1,4 @@
-{# src/AppBundle/Resources/views/Tournament/tournament.html.twig #}
+{# src/AppBundle/Resources/views/Challenge/challenge.html.twig #}
 {% extends "::base.html.twig" %}
 
 {% form_theme form _self %}
@@ -18,11 +18,11 @@
     </div>
 {%- endblock choice_widget_expanded %}
 
-{% block title %}{{ action }} Tournament{% endblock %}
+{% block title %}{{ action }} Challenge{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h2>{{ action }} Tournament</h2>
+        <h2>{{ action }} Challenge</h2>
 
         {{ form_start(form) }}
         {{ form_errors(form) }}

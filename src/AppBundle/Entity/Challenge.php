@@ -1,17 +1,17 @@
 <?php
-// src/AppBundle/Entity/Tournament.php
+// src/AppBundle/Entity/Challenge.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Tournament
+ * Challenge
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\TournamentRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\ChallengeRepository")
  */
-class Tournament
+class Challenge
 {
     /**
      * @var integer
@@ -34,8 +34,8 @@ class Tournament
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Player")
-     * \Doctrine\ORM\Mapping\JoinTable(name="tournament_players",
-     *      joinColumns={@JoinColumn(name="tournament_id", referencedColumnName="id")},
+     * \Doctrine\ORM\Mapping\JoinTable(name="challenge_players",
+     *      joinColumns={@JoinColumn(name="challenge_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="player_id", referencedColumnName="id", unique=true)}
      *      )
      * @Assert\Count(min = 2, minMessage = "You must select at least two players")
@@ -90,7 +90,7 @@ class Tournament
      *
      * @param string $name
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function setName($name)
     {
@@ -114,7 +114,7 @@ class Tournament
      *
      * @param \AppBundle\Entity\Player $player
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function addPlayer($player)
     {
@@ -128,7 +128,7 @@ class Tournament
      *
      * @param \AppBundle\Entity\Player $player
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function removePlayer($player)
     {
@@ -142,7 +142,7 @@ class Tournament
      *
      * @param \Doctrine\Common\Collections\Collection
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function setStores($players)
     {
@@ -166,7 +166,7 @@ class Tournament
      *
      * @param boolean $active
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function setActive($active)
     {
@@ -190,7 +190,7 @@ class Tournament
      *
      * @param \DateTime $created
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function setCreated($created)
     {
@@ -214,7 +214,7 @@ class Tournament
      *
      * @param \DateTime $hosted
      *
-     * @return Tournament
+     * @return Challenge
      */
     public function setHosted($hosted)
     {

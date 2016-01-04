@@ -1,10 +1,10 @@
 <?php
-// src/AppBundle/Controller/TournamentController.php
+// src/AppBundle/Controller/ChallengeController.php
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Player;
-use AppBundle\Entity\Tournament;
-use AppBundle\Form\Type\TournamentType;
+use AppBundle\Entity\Challenge;
+use AppBundle\Form\Type\ChallengeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,44 +12,44 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class TournamentController extends Controller
+class ChallengeController extends Controller
 {
     /**
-     * @Route("/tournaments", name="tournaments")
-     * @Template("AppBundle:Tournament:tournaments.html.twig")
+     * @Route("/challenges", name="challenges")
+     * @Template("AppBundle:Challenge:challenges.html.twig")
      * @Method("GET")
      */
     public function listAction()
     {
-        $tournaments = $this->getDoctrine()
-            ->getRepository('AppBundle:Tournament')
+        $challenges = $this->getDoctrine()
+            ->getRepository('AppBundle:Challenge')
             ->findAllActiveOrderedByHostedDate();
 
         return array(
-                'tournaments' => $tournaments,
+                'challenges' => $challenges,
             );
     }
 
     /**
-     * @Route("/tournaments/add", name="add_tournament")
-     * @Template("AppBundle:Tournament:tournament_add.html.twig")
+     * @Route("/challenges/add", name="add_challenge")
+     * @Template("AppBundle:Challenge:challenge_add.html.twig")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request)
     {
-        $tournament = new Tournament();
-        $form = $this->createForm(new TournamentType(), $tournament);
+        $challenge = new Challenge();
+        $form = $this->createForm(new ChallengeType(), $challenge);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($tournament);
+            $em->persist($challenge);
             $em->flush();
 
-            $this->addFlash('notice', 'New tournament added!');
+            $this->addFlash('notice', 'New challenge added!');
 
-            return $this->redirectToRoute('tournament_by_id', array('id' => $tournament->getId()));
+            return $this->redirectToRoute('challenge_by_id', array('id' => $challenge->getId()));
         }
 
         return array(
@@ -59,35 +59,35 @@ class TournamentController extends Controller
     }
 
     /**
-     * @Route("/tournament/{id}", name="tournament_by_id")
-     * @Template("AppBundle:Tournament:tournament.html.twig")
+     * @Route("/challenge/{id}", name="challenge_by_id")
+     * @Template("AppBundle:Challenge:challenge.html.twig")
      * @Method("GET")
      */
     public function infoAction($id)
     {
-        $tournament = $this->getDoctrine()
-                    ->getRepository('AppBundle:Tournament')
+        $challenge = $this->getDoctrine()
+                    ->getRepository('AppBundle:Challenge')
                     ->find($id);
 
-        if (!$tournament) {
-            throw $this->createNotFoundException('No tournament with id ' . $id);
+        if (!$challenge) {
+            throw $this->createNotFoundException('No challenge with id ' . $id);
         }
 
         return array(
-                'tournament' => $tournament,
+                'challenge' => $challenge,
             );
     }
 
     /**
-     * @Route("tournament/{id}/complete", name="complete_tournament")
+     * @Route("challenge/{id}/complete", name="complete_challenge")
      * @Method("POST")
      */
     public function completeAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $tournament = $em->getRepository('AppBundle:Tournament')->find($id);
-        $tournament->setActive(false);
-        $em->persist($tournament);
+        $challenge = $em->getRepository('AppBundle:Challenge')->find($id);
+        $challenge->setActive(false);
+        $em->persist($challenge);
 
         # Get ranks of players, and sort them
         $data = $request->request->get('players');
@@ -115,11 +115,11 @@ class TournamentController extends Controller
         $em->flush();
 
         # Flash a success
-        $this->addFlash('notice', 'Tournament "' . $tournament->getName() . '" updated and closed!');
+        $this->addFlash('notice', 'Challenge "' . $challenge->getName() . '" updated and closed!');
 
         # Return success
         $response = new JsonResponse();
-        $response->setData(array('success' => true, 'tournament' => $tournament->getName(), 'ranks' => $ranks));
+        $response->setData(array('success' => true, 'challenge' => $challenge->getName(), 'ranks' => $ranks));
         return $response;
     }
 }

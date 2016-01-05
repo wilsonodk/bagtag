@@ -62,17 +62,4 @@ class PlayerRepository extends EntityRepository
     {
         return $this->findBy(array('name' => $name));
     }
-
-    /**
-     * findDisabled
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function findDisabled()
-    {
-        return $this->findBy(
-            array('active' => false),
-            array('name' => 'ASC')
-        );
-    }
 }

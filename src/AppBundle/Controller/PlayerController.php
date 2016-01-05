@@ -58,20 +58,6 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/players/disabled", name="players_disabled")
-     * @Template("AppBundle:Player:list.html.twig")
-     * @Method("GET")
-     */
-    public function listDisabledAction()
-    {
-        $players = $this->getDoctrine()->getRepository('AppBundle:Player')->findDisabled();
-
-        return array(
-                'players' => $players,
-            );
-    }
-
-    /**
      * @Route("/player/{id}", name="player_by_id")
      * @Template("AppBundle:Player:index.html.twig")
      * @Method("GET")

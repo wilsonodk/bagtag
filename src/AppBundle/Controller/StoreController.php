@@ -17,12 +17,15 @@ class StoreController extends Controller
      * @Template("AppBundle:Store:list.html.twig")
      * @Method("GET")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $stores = $this->getDoctrine()->getRepository('AppBundle:Store')->findAllOrderedByName();
+        $type = $request->query->get('type', 'active');
+
+        $stores = $this->getDoctrine()->getRepository('AppBundle:Store')->findAllOrderedByName($type);
 
         return array(
                 'stores' => $stores,
+                'picked_state' => $type,
             );
     }
 
@@ -90,6 +93,7 @@ class StoreController extends Controller
         return array(
                 'form' => $form->createView(),
                 'action' => 'Update',
+                'store' => $store,
             );
     }
 
@@ -122,6 +126,29 @@ class StoreController extends Controller
                 'form' => $form->createView(),
                 'action' => 'Update',
             );
+    }
 
+    /**
+     * @Route("/store/{id}/toggle", name="toggle_store_by_id")
+     * @Method("GET")
+     */
+    public function toggleAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $store = $em->getRepository('AppBundle:Store')->find($id);
+
+        if (!$store) {
+            throw $this->createNotFoundException('No store found for id ' . $id);
+        }
+
+        $store->setActive(!$store->getActive());
+        $em->persist($store);
+        $em->flush();
+
+        $state = $store->getActive() ? 'enabled' : 'disabled';
+
+        $this->addFlash('notice', sprintf('Store %s (%s) is %s.', $store->getName(), $store->getId(), $state));
+
+        return $this->redirectToRoute('stores');
     }
 }

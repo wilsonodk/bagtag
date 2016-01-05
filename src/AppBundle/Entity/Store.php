@@ -117,6 +117,19 @@ class Store
     private $email;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /* Constructor */
+    public function __construct()
+    {
+        $this->active = true;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -412,5 +425,29 @@ class Store
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set active
+     *
+     * @param integer $active
+     *
+     * @return Store
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return integer
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

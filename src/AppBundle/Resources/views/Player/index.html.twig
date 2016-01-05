@@ -7,6 +7,8 @@
     <div class="container">
         <h2>{{ player.name}} <span class="badge">Rank: {{ player.rank }}</span></h2>
 
+        {% if not player.active %}<p><span class="label label-warning">Disabled</span></p>{% endif %}
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Stores</h3>

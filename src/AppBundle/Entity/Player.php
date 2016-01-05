@@ -57,10 +57,18 @@ class Player
      */
     private $previous;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
     /* Constructor */
     public function __construct()
     {
         $this->stores = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->active = true;
     }
 
     /**
@@ -205,5 +213,29 @@ class Player
     public function getPrevious()
     {
         return $this->previous;
+    }
+
+    /**
+     * Set active
+     *
+     * @param integer $active
+     *
+     * @return Player
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return integer
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

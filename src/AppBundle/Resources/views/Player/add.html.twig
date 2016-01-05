@@ -12,5 +12,9 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
+        {% if action == 'Update' %}
+            {% set player_state %}{% if player.active %}Disable{% else %}Enable{% endif %}{% endset %}
+            <p><a class="btn btn-warning btn-xs" href="{{ path('toggle_player_by_id', {'id': player.id}) }}">{{ player_state }} {{ player.name }}</a></p>
+        {% endif %}
     </div>
 {% endblock %}

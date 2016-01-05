@@ -8,9 +8,17 @@
 
         <h2>Players</h2>
 
+        <p class="btn-group btn-group-xs">
+            <a href="{{ path('players') }}?type=all" class="btn btn-default {% if picked_state == 'all' %}active{% endif %}">All</a>
+            <a href="{{ path('players') }}?type=active" class="btn btn-default {% if picked_state == 'active' %}active{% endif %}">Active</a>
+            <a href="{{ path('players') }}?type=disabled" class="btn btn-default {% if picked_state == 'disabled' %}active{% endif %}">Disabled</a>
+        </p>
+
+        <br />
+
         <div class="list-group">
             {% for player in players %}
-                <a class="list-group-item" href="{{ path('player_by_id', {'id': player.id}) }}">
+                <a class="list-group-item {% if not player.active %}disabled{% endif %}" href="{{ path('player_by_id', {'id': player.id}) }}">
                     <span class="badge">{{ player.rank }}</span>
                     {{ player.name }}
                 </a>

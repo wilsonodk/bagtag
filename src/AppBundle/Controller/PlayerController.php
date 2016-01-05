@@ -17,12 +17,15 @@ class PlayerController extends Controller
      * @Template("AppBundle:Player:list.html.twig")
      * @Method("GET")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $players = $this->getDoctrine()->getRepository('AppBundle:Player')->findAllOrderedByName();
+        $type = $request->query->get('type', 'active');
+
+        $players = $this->getDoctrine()->getRepository('AppBundle:Player')->findAllOrderedByName($type);
 
         return array(
                 'players' => $players,
+                'picked_state' => $type,
             );
     }
 
@@ -51,6 +54,20 @@ class PlayerController extends Controller
         return array(
                 'action' => 'Create',
                 'form' => $form->createView(),
+            );
+    }
+
+    /**
+     * @Route("/players/disabled", name="players_disabled")
+     * @Template("AppBundle:Player:list.html.twig")
+     * @Method("GET")
+     */
+    public function listDisabledAction()
+    {
+        $players = $this->getDoctrine()->getRepository('AppBundle:Player')->findDisabled();
+
+        return array(
+                'players' => $players,
             );
     }
 
@@ -90,6 +107,7 @@ class PlayerController extends Controller
         return array(
                 'form' => $form->createView(),
                 'action' => 'Update',
+                'player' => $player,
             );
     }
 
@@ -123,5 +141,29 @@ class PlayerController extends Controller
                 'action' => 'Update',
             );
 
+    }
+
+    /**
+     * @Route("/player/{id}/toggle", name="toggle_player_by_id")
+     * @Method("GET")
+     */
+    public function toggleAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $player = $em->getRepository('AppBundle:Player')->find($id);
+
+        if (!$player) {
+            throw $this->createNotFoundException('No player found for id ' . $id);
+        }
+
+        $player->setActive(!$player->getActive());
+        $em->persist($player);
+        $em->flush();
+
+        $state = $player->getActive() ? 'enabled' : 'disabled';
+
+        $this->addFlash('notice', sprintf('Player %s (%s) is %s.', $player->getName(), $player->getId(), $state));
+
+        return $this->redirectToRoute('players');
     }
 }

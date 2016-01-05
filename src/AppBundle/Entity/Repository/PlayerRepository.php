@@ -32,7 +32,7 @@ class PlayerRepository extends EntityRepository
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByName($state)
+    public function findAllOrderedByName($state = 'active')
     {
         return $this->findBy(
             $this->getActiveState($state),
@@ -45,7 +45,7 @@ class PlayerRepository extends EntityRepository
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByRank($state)
+    public function findAllOrderedByRank($state = 'active')
     {
         return $this->findBy(
             $this->getActiveState($state),

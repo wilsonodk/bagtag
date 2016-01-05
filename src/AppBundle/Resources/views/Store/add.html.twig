@@ -12,5 +12,9 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
+        {% if action == 'Update' %}
+            {% set store_state %}{% if store.active %}Disable{% else %}Enable{% endif %}{% endset %}
+            <p><a class="btn btn-warning btn-xs" href="{{ path('toggle_store_by_id', {'id': store.id}) }}">{{ store_state }} {{ store.name }}</a></p>
+        {% endif %}
     </div>
 {% endblock %}

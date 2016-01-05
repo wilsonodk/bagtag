@@ -7,6 +7,8 @@
     <div class="container">
         <h2>{{ player.name}} <span class="badge">Rank: {{ player.rank }}</span></h2>
 
+        {% if not player.active %}<p><span class="label label-warning">Disabled</span></p>{% endif %}
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Stores</h3>
@@ -14,7 +16,10 @@
 
             <div class="list-group">
                 {% for store in player.stores %}
-                    <a class="list-group-item" href="{{ path('store_by_id', {'id': store.id}) }}">{{ store.name }}</a>
+                    <a class="list-group-item {% if not store.active %}disabled{% endif %}" href="{{ path('store_by_id', {'id': store.id}) }}">
+                        {{ store.name }}
+                        <span class="label label-info">{{ store.city }}, {{ store.state }}</span>
+                    </a>
                 {% endfor %}
             </div>
         </div>

@@ -7,6 +7,12 @@
     <div class="container">
         <h2>Stores</h2>
 
+        <p class="btn-group btn-group-xs">
+            <a href="{{ path('stores') }}?type=all" class="btn btn-default {% if picked_state == 'all' %}active{% endif %}">All</a>
+            <a href="{{ path('stores') }}?type=active" class="btn btn-default {% if picked_state == 'active' %}active{% endif %}">Active</a>
+            <a href="{{ path('stores') }}?type=disabled" class="btn btn-default {% if picked_state == 'disabled' %}active{% endif %}">Disabled</a>
+        </p>
+
         <div class="list-group">
             {% for store in stores %}
                 <a class="list-group-item" href="{{ path('store_by_id', {'id': store.id}) }}">

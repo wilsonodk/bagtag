@@ -12,5 +12,11 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
+        <p><a class="btn btn-info btn-xs" href="{{ path('add_store') }}" target="_blank">Add store (opens in new window)</a></p>
+
+        {% if action == 'Update' %}
+            {% set player_state %}{% if player.active %}Disable{% else %}Enable{% endif %}{% endset %}
+            <p><a class="btn btn-warning btn-xs" href="{{ path('toggle_player_by_id', {'id': player.id}) }}">{{ player_state }} {{ player.name }}</a></p>
+        {% endif %}
     </div>
 {% endblock %}

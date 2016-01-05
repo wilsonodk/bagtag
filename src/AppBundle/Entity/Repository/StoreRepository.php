@@ -14,8 +14,16 @@ class StoreRepository extends EntityRepository
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByName()
+    public function findAllOrderedByName($state)
     {
-        return $this->findBy(array(), array('name' => 'ASC'));
+        if ($state === 'all') {
+            $state = array();
+        } else if ($state === 'disabled') {
+            $state = array('active' => false);
+        } else {
+            $state = array('active' => true);
+        }
+
+        return $this->findBy($state, array('name' => 'ASC'));
     }
 }

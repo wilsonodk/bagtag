@@ -33,7 +33,9 @@
 
         <p>Arrange the players in the order of best placed first, and worse place last. Then complete challenge.</p>
 
-        <p><button class="btn btn-primary" id="complete-challenge">Complete Challenge</button></p>
+        {% if challenge.active %}
+            <p><button class="btn btn-primary" id="complete-challenge">Complete Challenge</button></p>
+        {% endif %}
     </div>
 {% endblock %}
 

@@ -10,13 +10,34 @@ use Doctrine\ORM\EntityRepository;
 class PlayerRepository extends EntityRepository
 {
     /**
+     * getActiveState
+     *
+     * @return array
+     */
+    private function getActiveState($state)
+    {
+        if ($state === 'all') {
+            $state = array();
+        } else if ($state === 'disabled') {
+            $state = array('active' => false);
+        } else {
+            $state = array('active' => true);
+        }
+
+        return $state;
+    }
+
+    /**
      * findAllOrderedByName
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByName()
+    public function findAllOrderedByName($state)
     {
-        return $this->findBy(array(), array('name' => 'ASC'));
+        return $this->findBy(
+            $this->getActiveState($state),
+            array('name' => 'ASC')
+        );
     }
 
     /**
@@ -24,9 +45,12 @@ class PlayerRepository extends EntityRepository
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByRank()
+    public function findAllOrderedByRank($state)
     {
-        return $this->findBy(array(), array('rank' => 'ASC'));
+        return $this->findBy(
+            $this->getActiveState($state),
+            array('rank' => 'ASC')
+        );
     }
 
     /**
@@ -34,7 +58,8 @@ class PlayerRepository extends EntityRepository
      *
      * @return Player
      */
-    public function findByName($name) {
+    public function findByName($name)
+    {
         return $this->findBy(array('name' => $name));
     }
 }

@@ -14,7 +14,7 @@ class StoreRepository extends EntityRepository
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function findAllOrderedByName($state)
+    public function findAllOrderedByName($state = 'active')
     {
         if ($state === 'all') {
             $state = array();

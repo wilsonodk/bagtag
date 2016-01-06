@@ -54,6 +54,23 @@ class PlayerRepository extends EntityRepository
     }
 
     /**
+     * findAllByStore
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function findAllByStore($store)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->innerJoin('p.stores', 's', 'WITH', 's.id = :store_id')
+            ->setParameter('store_id', $store)
+            ->addOrderBy('p.rank', 'ASC')
+            ->addOrderBy('p.name', 'ASC')
+            ;
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
      * findByName
      *
      * @return Player

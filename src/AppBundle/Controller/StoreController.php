@@ -70,8 +70,11 @@ class StoreController extends Controller
             throw $this->createNotFoundException('No store found for id ' . $id);
         }
 
+        $players = $this->getDoctrine()->getRepository('AppBundle:Player')->findAllByStore($id);
+
         return array(
                 'store' => $store,
+                'players' => $players,
             );
     }
 

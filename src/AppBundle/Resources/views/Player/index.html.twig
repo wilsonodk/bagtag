@@ -9,7 +9,7 @@
 
         {% if not player.active %}<p><span class="label label-warning">Disabled</span></p>{% endif %}
 
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Stores</h3>
             </div>
@@ -20,6 +20,8 @@
                         {{ store.name }}
                         <span class="label label-info">{{ store.city }}, {{ store.state }}</span>
                     </a>
+                {% else %}
+                    <div class="list-group-item">No store</div>
                 {% endfor %}
             </div>
         </div>

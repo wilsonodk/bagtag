@@ -101,7 +101,6 @@ class ChallengeController extends Controller
         # Using order of POST-players, update all the players
         $repo = $em->getRepository('AppBundle:Player');
         foreach ($data as $i => $val) {
-            var_dump($val['name']);
             $player = $repo->findOneByName($val['name']);
             $prev   = $player->getRank();
 

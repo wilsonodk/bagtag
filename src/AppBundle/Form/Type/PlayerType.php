@@ -19,6 +19,7 @@ class PlayerType extends AbstractType
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => true,
+                'required' => false,
             ))
             ->add('save', 'submit')
             ;

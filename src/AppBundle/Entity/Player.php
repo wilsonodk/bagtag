@@ -50,14 +50,6 @@ class Player
     private $rank;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Type("integer")
-     */
-    private $previous;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
@@ -189,30 +181,6 @@ class Player
     public function getRank()
     {
         return $this->rank;
-    }
-
-    /**
-     * Set previous
-     *
-     * @param integer $previous
-     *
-     * @return Player
-     */
-    public function setPrevious($previous)
-    {
-        $this->previous = $previous;
-
-        return $this;
-    }
-
-    /**
-     * Get previous
-     *
-     * @return integer
-     */
-    public function getPrevious()
-    {
-        return $this->previous;
     }
 
     /**

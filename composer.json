@@ -1,5 +1,5 @@
 {
-    "name": "wwise/bagtag",
+    "name": "wwise/rank-card",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -46,7 +46,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "compile": [
-            "php app/console assetic:dump --env=prod --no-debug"
+            "php bin/console assetic:dump --env=prod --no-debug"
         ]
     },
     "config": {

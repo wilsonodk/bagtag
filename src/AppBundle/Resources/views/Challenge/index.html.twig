@@ -48,7 +48,7 @@
     {% endjavascripts %}
     <script>
     var completeUrl = "{{ path('complete_challenge', {'id': challenge.id }) }}",
-        successUrl = "{{ path('challenges') }}",
+        successUrl = window.location.origin + "{{ path('challenges') }}",
         players = [];
 
     function completeChallenge() {
@@ -70,7 +70,7 @@
             data: {players: players},
             success: function (data) {
                 console.log(data);
-                window.location.replace(successUrl);
+                window.location.assign(successUrl);
             }
         });
     }

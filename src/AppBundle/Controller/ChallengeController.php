@@ -102,11 +102,9 @@ class ChallengeController extends Controller
         $repo = $em->getRepository('AppBundle:Player');
         foreach ($data as $i => $val) {
             $player = $repo->findOneByName($val['name']);
-            $prev   = $player->getRank();
 
             $player
                 ->setRank($ranks[$i])
-                ->setPrevious($prev)
                 ;
 
             $em->persist($player);

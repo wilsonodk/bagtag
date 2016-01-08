@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Player;
+use AppBundle\Entity\Players;
 use AppBundle\Form\Type\PlayerType;
+use AppBundle\Form\Type\PlayersType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,6 +55,42 @@ class PlayerController extends Controller
 
         return array(
                 'action' => 'Create',
+                'form' => $form->createView(),
+            );
+    }
+
+    /**
+     * @Route("/players/bulk", name="bulk_players")
+     * @Template("AppBundle:Player:bulk.html.twig")
+     * @Method({"GET", "POST"})
+     */
+    public function bulkPlayers(Request $request)
+    {
+        $all_players = $this->getDoctrine()->getRepository('AppBundle:Player')->findAllOrderedByName('all');
+
+        $players = new Players();
+        foreach ($all_players as $player) {
+            $players->addPlayer($player);
+        }
+
+        $form = $this->createForm(new PlayersType(), $players);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            foreach ($players as $player) {
+                $em->persist($player);
+            }
+
+            $em->flush();
+
+            $this->addFlash('notice', 'Players bulk edited');
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return array(
                 'form' => $form->createView(),
             );
     }

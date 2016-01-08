@@ -36,7 +36,10 @@ class PlayerRepository extends EntityRepository
     {
         return $this->findBy(
             $this->getActiveState($state),
-            array('name' => 'ASC')
+            array(
+                'name' => 'ASC',
+                'rank' => 'ASC',
+            )
         );
     }
 
@@ -49,7 +52,10 @@ class PlayerRepository extends EntityRepository
     {
         return $this->findBy(
             $this->getActiveState($state),
-            array('rank' => 'ASC')
+            array(
+                'rank' => 'ASC',
+                'name' => 'ASC',
+            )
         );
     }
 

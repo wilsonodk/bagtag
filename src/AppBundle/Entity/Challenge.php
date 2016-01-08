@@ -144,7 +144,7 @@ class Challenge
      *
      * @return Challenge
      */
-    public function setStores($players)
+    public function setPlayers($players)
     {
         $this->$players = $players;
 
